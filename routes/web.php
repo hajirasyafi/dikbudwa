@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BeritaController;
+Use App\Http\Controllers\PanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('panel.base');
-});
+Route::get('/panel', [PanelController::class, 'panel'])->name('panel');
+
+Route::get('/daftarberita', [PanelController::class, 'daftarberita'])->name('daftarberita');
+
+Route::get('/newseditor', [PanelController::class, 'newseditor']);
+
+Route::post('/storeberita', [BeritaController::class, 'storeberita'])->name('storeberita');
+
+Route::get('/getdaftarberita', [BeritaController::class, 'getdaftarberita'])->name('getdaftarberita');
