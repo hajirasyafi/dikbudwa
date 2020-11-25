@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-	<title>SMA Wahidiyah</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="{{asset('favicon/apple-touch-icon.png')}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon/favicon-32x32.png')}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon/favicon-16x16.png')}}">
+  <link rel="manifest" href="{{asset('favicon/site.webmanifest')}}">
+	<title>Departemen Kebudayaan dan Pendidikan Dasar dan Menengah Wahidiyah</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/customs.css')}}">
-	<link href="icons/icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+  @yield('css')
 </head>
 <body>
 
-<div class="wrapper">
+<!-- <div class="wrapper">
 	<header class="header">
 		<div class="py-sm-2 bg-light border-bottom">
 			<div class="container">
@@ -50,7 +54,7 @@
 			</div>
 		</div>
 	</header>
-</div>
+</div> -->
 
 <div class="header border-bottom border-top">
 	<div class="py-3 bg-hijau">
@@ -58,11 +62,11 @@
 			<div class="row">
 				<div class="col-md-12 col-xs-12">
 					<div class="header-logo">
-						<a href="#"><img src="{{asset('dikdasmen.png')}}" width="120" class="header-logo d-none d-sm-block"></a>
+						<a href="{{url('/')}}"><img src="{{asset('dikdasmen.png')}}" width="120" class="header-logo d-none d-sm-block"></a>
 					</div>
 					<div class="header-text">
-						<h4 class="text-white">YAYASAN PERJUANGAN WAHIDIYAH DAN PONDOK PESANTREN KEDUNGLO</h4>
-						<p class="lead text-white"><strong> Departemen Kebudayaan dan Pendidikan Dasar dan Menengah Wahidiyah</strong></p>
+						<h4 class="text-white">Departemen Kebudayaan dan Pendidikan Dasar dan Menengah Wahidiyah</h4>
+						<p class="lead text-white"><strong>YAYASAN PERJUANGAN WAHIDIYAH DAN PONDOK PESANTREN KEDUNGLO</strong></p>
 					</div>
 				</div>
 			</div>
@@ -70,15 +74,15 @@
 	</div>
 </div>
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white shadow-sm" role="navigation">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light shadow-sm" role="navigation" style="background-color: #ECEFF1">
     <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#NavbarToggler01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="NavbarToggler01">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item pr-4">
-                    <a href="#" class="nav-link">Beranda</a>
+                    <a href="{{url('/')}}" class="nav-link">Beranda</a>
                 </li>
                 <li class="nav-item pr-4">
                     <a href="#" class="nav-link">Profil</a>
@@ -106,24 +110,7 @@
     </div>
 </nav>
 <div class="container" role="main">
-    <div id="carouseldikdasmen" class="carousel slide" data-ride="carousel">
-    	<div class="carousel-inner">
-    		<div class="carousel-item active">
-    			<img src="{{asset('1.jpg')}}" class="d-block w-100">
-    		</div>
-    		<div class="carousel-item">
-    			<img src="{{asset('2.jpg')}}" class="d-block w-100">
-    		</div>
-    	</div>
-    	<a class="carousel-control-prev" href="#carouseldikdasmen" role="button" data-slide="prev">
-    		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    		<span class="sr-only">Previous</span>
-    	</a>
-    	<a class="carousel-control-next" href="#carouseldikdasmen" role="button" data-slide="next">
-    		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-    		<span class="sr-only">Next</span>
-    	</a>
-    </div>
+  @yield('carousel')
     <div class="row">
         @yield('content')
     </div>
@@ -135,7 +122,7 @@
         <div class="row">
           <div class="col-12 col-md">
             <img class="mb-2" src="{{asset('dikdasmen.png')}}" alt="Dikbud" width="80" height="80">
-            <small class="d-block mb-3 text-white-50">Copyright © Departemen Kebudayaan dan Pendidikan Dasar dan Menengah Wahidiyah</small>
+            <small class="d-block mb-3 text-white-50">Copyright © 2020 Departemen Kebudayaan dan Pendidikan Dasar dan Menengah Wahidiyah</small>
           </div>
           <div class="col-6 col-md">
             <h5 class="text-white">Features</h5>
@@ -169,10 +156,9 @@
         </div>
     </div>
 </footer>
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+@yield('script')
 </body>
 </html>

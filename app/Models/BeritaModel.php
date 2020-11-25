@@ -11,6 +11,12 @@ class BeritaModel extends Model
     protected $fillable = [
         'title_berita',
         'description',
+        'slug'
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
 

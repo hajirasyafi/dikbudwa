@@ -40,13 +40,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link {{ request()->is('sekolah') ? 'active' : '' }}">
             <i class="material-icons-round align-middle">school</i>
               <p>Sekolah</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="daftarberita" class="nav-link {{ request()->is('daftarberita') ? 'active' : '' }}">
+            <a href="{{route('daftarberita')}}" class="nav-link {{ request()->is('daftarberita') ? 'active' : '' }}">
             <i class="material-icons-round align-middle">library_books</i>
               <p>Berita</p>
             </a>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBeritaModelsTable extends Migration
+class CreateProvinsisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateBeritaModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('berita_models', function (Blueprint $table) {
+        Schema::create('provinsis', function (Blueprint $table) {
             $table->id();
-            $table->string('title_berita', 200)->nullable();
-            $table->text('description')->nullable();
-            $table->enum('publish_status', ['0', '1'])->nullable();
-            $table->string('slug')->nullable();
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateBeritaModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berita_models');
+        Schema::dropIfExists('provinsis');
     }
 }

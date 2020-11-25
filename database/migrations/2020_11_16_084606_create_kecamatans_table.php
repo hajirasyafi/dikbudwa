@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBeritaModelsTable extends Migration
+class CreateKecamatansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateBeritaModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('berita_models', function (Blueprint $table) {
+        Schema::create('kecamatans', function (Blueprint $table) {
             $table->id();
-            $table->string('title_berita', 200)->nullable();
-            $table->text('description')->nullable();
-            $table->enum('publish_status', ['0', '1'])->nullable();
-            $table->string('slug')->nullable();
+            $table->unsignedBigInteger('regency_id');
+            $table->string('name')->nullable();
             $table->timestamps();
+            $table->foreign('regency_id')->references('id')->on('kotas');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateBeritaModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berita_models');
+        Schema::dropIfExists('kecamatans');
     }
 }
