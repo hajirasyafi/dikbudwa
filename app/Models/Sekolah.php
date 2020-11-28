@@ -28,4 +28,13 @@ class Sekolah extends Model
     public function getDesa(){
         return $this->belongsTo('App\Models\Desa', 'village_id');
     }
+    public function getKecamatan(){
+        return $this->belongsTo('App\Models\Kecamatan', 'district_id');
+    }
+    public function getKota(){
+        return $this->belongsTo('App\Models\Kota', 'regency_id');
+    }
+    public function getProvinsi(){
+        return $this->belongsTo('App\Models\Provinsi', 'province_id');
+    }
 }

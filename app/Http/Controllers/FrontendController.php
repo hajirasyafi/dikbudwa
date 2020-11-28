@@ -142,4 +142,18 @@ class FrontendController extends Controller
         ->addIndexColumn()
         ->toJson();
     }
+
+    public function satuanpendidikan($id)
+    {
+        foreach ( Sekolah::where('npsn', $id)->get() as $key => $value) {
+        }
+        $sekolah = Sekolah::with('getDesa')->where('village_id', $value->village_id)
+        ->with('getKecamatan')->where('district_id', $value->district_id)
+        ->with('getKota')->where('regency_id', $value->regency_id)
+        ->with('getProvinsi')->where('province_id', $value->province_id)
+        ->where('npsn', $id)
+        ->get();
+
+        return view('frontend.satuanpendidikan', ['satuanpendidikan'=>$sekolah]);
+    }
 }

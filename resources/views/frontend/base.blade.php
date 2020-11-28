@@ -109,7 +109,7 @@
         </div>
     </div>
 </nav>
-<div class="container" role="main">
+<div class="container my-4" role="main">
   @yield('carousel')
     <div class="row">
         @yield('content')
