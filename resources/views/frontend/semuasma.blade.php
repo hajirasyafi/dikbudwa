@@ -10,32 +10,31 @@
 @endsection
 @section('content')
 <div class="col-md-12">
-{{ Breadcrumbs::render('onkota', $onkota, $onprovinsi) }}
+{{ Breadcrumbs::render('semuasma') }}
 </div>
 <div class="col-sm-12">
-    <div class="card">
+    <div class="card border-blue">
         <div class="card-header">
-            <div class="card-tittle">DAFTAR SEKOLAH PERWILAYAH</div>
+            <div class="card-tittle text-center"><h3><strong>DAFTAR SEMUA SMA</strong></h3></div>
         </div>
         <div class="card-body">
-            <table class="table table-striped hover" id="sekolah" class="display nowrap" style="width:100%">
+            <table class="table table-striped hover display compact" id="sekolah" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Wilayah</th>
-                        <th>Total</th>
-                        <th>SMA</th>
-                        <th>SMP</th>
-                        <th>SD</th>
-                        <th>TK</th>
-                        <th>PAUD</th>
+                        <th>Nama Satuan Pendidikan</th>
+                        <th>NPSN</th>
+                        <th>Jenjang</th>
+                        <th>Provinsi</th>
+                        <th>Kab./Kota</th>
+                        <th>Kecamatan</th>
+                        <th>Desa/Kelurahan</th>
                     </tr>
                 </thead>
             </table>
         </div>
     </div>
 </div>
-@include('frontend.widgetsekolah')
 @endsection
 @section('script')
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -43,26 +42,26 @@
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 <script>
 $(document).ready(function () {
-    var route = '{{route("fgetkecsp", (request()->segment(3)))}}';
     $('#sekolah').DataTable({
         processing: true,
         serverSide: true,
-        ajax: route,
+        ajax: '{{ route('fgetsemuasma') }}',
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
-            { data: 'name', name: 'name', render: function(data, type, row){
-                return '<a href="'+row.link+'">'+row.name+'</a>'
+            { data: 'nama_sp', name: 'nama_sp', render: function(data, type, row){
+                return '<a href="'+row.link+'">'+row.nama_sp+'</a>'
             } },
-            { data: 'total', name: 'total' },
-            { data: 'sma', name: 'sma' },
-            { data: 'smp', name: 'smp' },
-            { data: 'sd', name: 'sd' },
-            { data: 'tk', name: 'tk' },
-            { data: 'paud', name: 'paud' }
+            { data: 'npsn', name: 'npsn' },
+            { data: 'jenjang', name: 'jenjang' },
+            { data: 'provinsi', name: 'provinsi' },
+            { data: 'kota', name: 'kota' },
+            { data: 'kecamatan', name: 'kecamatan' },
+            { data: 'desa', name: 'desa' }
         ],
         columnDefs: [
-            { className: "text-center",
-            targets: [ 0, 2, 3, 4, 5, 6, 7]}
+            {   targets: [ 0, 2, 3, 4, 5, 6, 7],
+                className: 'text-center',
+            }
         ],
         order: [2, 'des'],
         scrollX: true,

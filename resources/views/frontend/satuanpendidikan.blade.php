@@ -1,5 +1,8 @@
 @extends('frontend.base')
 @section('content')
+<div class="col-md-12">
+{{ Breadcrumbs::render('satuanpendidikanbc', $satuanpendidikanbc, $onkecamatan, $onkota, $onprovinsi) }}
+</div>
 @foreach($satuanpendidikan as $sekolah)
 <div class="col-md-3">
 	<div class="card my-4 border-blue">

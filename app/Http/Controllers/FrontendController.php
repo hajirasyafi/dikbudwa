@@ -62,7 +62,8 @@ class FrontendController extends Controller
 
     public function onprovinsi($id)
     {
-        return view('frontend.onprovinsi');
+        $onprovinsi = Provinsi::where('id', $id)->first();
+        return view('frontend.onprovinsi', ['onprovinsi'=>$onprovinsi]);
     }
 
     public function fgetkotasp($id)
@@ -94,7 +95,9 @@ class FrontendController extends Controller
 
     public function onkota($id)
     {
-        return view('frontend.onkota');
+        $onkota = Kota::where('id', $id)->first();
+        $onprovinsi = Provinsi::where('id', $onkota->province_id)->first();
+        return view('frontend.onkota', ['onkota'=>$onkota])->with(['onprovinsi'=>$onprovinsi]);
     }
 
     public function fgetkecsp($id)
@@ -126,7 +129,10 @@ class FrontendController extends Controller
 
     public function onkecamatan($id)
     {
-        return view('frontend.onkecamatan');
+        $onkecamatan = Kecamatan::where('id', $id)->first();
+        $onkota = Kota::where('id', $onkecamatan->regency_id)->first();
+        $onprovinsi= Provinsi::where('id', $onkota->province_id)->first();
+        return view('frontend.onkecamatan', ['onkecamatan'=>$onkecamatan])->with( ['onkota'=>$onkota])->with(['onprovinsi'=>$onprovinsi]);
     }
 
     public function fgetdesasp($id)
@@ -145,6 +151,10 @@ class FrontendController extends Controller
 
     public function satuanpendidikan($id)
     {
+        $satuanpendidikanbc = Sekolah::where('npsn', $id)->first();
+        $onkecamatan = Kecamatan::where('id', $satuanpendidikanbc->district_id)->first();
+        $onkota = Kota::where('id', $satuanpendidikanbc->regency_id)->first();
+        $onprovinsi= Provinsi::where('id', $satuanpendidikanbc->province_id)->first();
         foreach ( Sekolah::where('npsn', $id)->get() as $key => $value) {
         }
         $sekolah = Sekolah::with('getDesa')->where('village_id', $value->village_id)
@@ -154,6 +164,165 @@ class FrontendController extends Controller
         ->where('npsn', $id)
         ->get();
 
-        return view('frontend.satuanpendidikan', ['satuanpendidikan'=>$sekolah]);
+        return view('frontend.satuanpendidikan', ['satuanpendidikan'=>$sekolah])
+        ->with(['satuanpendidikanbc'=>$satuanpendidikanbc])
+        ->with(['onkecamatan'=>$onkecamatan])
+        ->with(['onkota'=>$onkota])
+        ->with(['onprovinsi'=>$onprovinsi]);
+    }
+
+    public function semuasekolah()
+    {
+        return view('frontend.semuasekolah');
+    }
+
+    public function fgetsemuasekolah()
+    {
+        $getsekolah = Sekolah::with('getDesa')
+                    ->with('getKecamatan')
+                    ->with('getKota')
+                    ->with('getProvinsi')
+                    ->get();
+        $getsekolah = $getsekolah->map(function($getsekolah){
+                    $getsekolah['provinsi'] = $getsekolah->getProvinsi->name;
+                    $getsekolah['kota'] = $getsekolah->getKota->name;
+                    $getsekolah['kecamatan'] = $getsekolah->getKecamatan->name;
+                    $getsekolah['desa'] = $getsekolah->getDesa->name;
+                    $getsekolah['link'] = route('satuanpendidikan', $getsekolah->npsn);
+                    return $getsekolah;
+        });
+        return DataTables::of($getsekolah)
+                ->addIndexColumn()
+                ->toJson();
+    }
+
+    public function semuasma()
+    {
+        return view('frontend.semuasma');
+    }
+
+    public function fgetsemuasma()
+    {
+        $getsekolah = Sekolah::with('getDesa')
+                    ->with('getKecamatan')
+                    ->with('getKota')
+                    ->with('getProvinsi')
+                    ->where('jenjang', 'SMA')
+                    ->get();
+        $getsekolah = $getsekolah->map(function($getsekolah){
+                    $getsekolah['provinsi'] = $getsekolah->getProvinsi->name;
+                    $getsekolah['kota'] = $getsekolah->getKota->name;
+                    $getsekolah['kecamatan'] = $getsekolah->getKecamatan->name;
+                    $getsekolah['desa'] = $getsekolah->getDesa->name;
+                    $getsekolah['link'] = route('satuanpendidikan', $getsekolah->npsn);
+                    return $getsekolah;
+        });
+        return DataTables::of($getsekolah)
+                ->addIndexColumn()
+                ->toJson();
+    }
+
+    public function semuasmp()
+    {
+        return view('frontend.semuasmp');
+    }
+
+    public function fgetsemuasmp()
+    {
+        $getsekolah = Sekolah::with('getDesa')
+                    ->with('getKecamatan')
+                    ->with('getKota')
+                    ->with('getProvinsi')
+                    ->where('jenjang', 'SMP')
+                    ->get();
+        $getsekolah = $getsekolah->map(function($getsekolah){
+                    $getsekolah['provinsi'] = $getsekolah->getProvinsi->name;
+                    $getsekolah['kota'] = $getsekolah->getKota->name;
+                    $getsekolah['kecamatan'] = $getsekolah->getKecamatan->name;
+                    $getsekolah['desa'] = $getsekolah->getDesa->name;
+                    $getsekolah['link'] = route('satuanpendidikan', $getsekolah->npsn);
+                    return $getsekolah;
+        });
+        return DataTables::of($getsekolah)
+                ->addIndexColumn()
+                ->toJson();
+    }
+
+    public function semuasd()
+    {
+        return view('frontend.semuasd');
+    }
+
+    public function fgetsemuasd()
+    {
+        $getsekolah = Sekolah::with('getDesa')
+                    ->with('getKecamatan')
+                    ->with('getKota')
+                    ->with('getProvinsi')
+                    ->where('jenjang', 'SD')
+                    ->get();
+        $getsekolah = $getsekolah->map(function($getsekolah){
+                    $getsekolah['provinsi'] = $getsekolah->getProvinsi->name;
+                    $getsekolah['kota'] = $getsekolah->getKota->name;
+                    $getsekolah['kecamatan'] = $getsekolah->getKecamatan->name;
+                    $getsekolah['desa'] = $getsekolah->getDesa->name;
+                    $getsekolah['link'] = route('satuanpendidikan', $getsekolah->npsn);
+                    return $getsekolah;
+        });
+        return DataTables::of($getsekolah)
+                ->addIndexColumn()
+                ->toJson();
+    }
+
+    public function semuatk()
+    {
+        return view('frontend.semuatk');
+    }
+
+    public function fgetsemuatk()
+    {
+        $getsekolah = Sekolah::with('getDesa')
+                    ->with('getKecamatan')
+                    ->with('getKota')
+                    ->with('getProvinsi')
+                    ->where('jenjang', 'TK')
+                    ->get();
+        $getsekolah = $getsekolah->map(function($getsekolah){
+                    $getsekolah['provinsi'] = $getsekolah->getProvinsi->name;
+                    $getsekolah['kota'] = $getsekolah->getKota->name;
+                    $getsekolah['kecamatan'] = $getsekolah->getKecamatan->name;
+                    $getsekolah['desa'] = $getsekolah->getDesa->name;
+                    $getsekolah['link'] = route('satuanpendidikan', $getsekolah->npsn);
+                    return $getsekolah;
+        });
+        return DataTables::of($getsekolah)
+                ->addIndexColumn()
+                ->toJson();
+    }
+
+    public function semuapaud()
+    {
+        return view('frontend.semuapaud');
+    }
+
+    public function fgetsemuapaud()
+    {
+        $getsekolah = Sekolah::with('getDesa')
+                    ->with('getKecamatan')
+                    ->with('getKota')
+                    ->with('getProvinsi')
+                    ->where('jenjang', 'PAUD')
+                    ->get();
+        $getsekolah = $getsekolah->map(function($getsekolah){
+                    $getsekolah['provinsi'] = $getsekolah->getProvinsi->name;
+                    $getsekolah['kota'] = $getsekolah->getKota->name;
+                    $getsekolah['kecamatan'] = $getsekolah->getKecamatan->name;
+                    $getsekolah['desa'] = $getsekolah->getDesa->name;
+                    $getsekolah['link'] = route('satuanpendidikan', $getsekolah->npsn);
+                    return $getsekolah;
+        });
+        return DataTables::of($getsekolah)
+                ->addIndexColumn()
+                ->toJson();
     }
 }

@@ -36,6 +36,30 @@ Route::get('/fgetdesasp/{id}', [FrontendController::class, 'fgetdesasp'])->name(
 
 Route::get('/satuanpendidikan/{id}', [FrontendController::class, 'satuanpendidikan'])->name('satuanpendidikan');
 
+Route::get('/semuasekolah', [FrontendController::class, 'semuasekolah'])->name('semuasekolah');
+
+Route::get('/fgetsemuasekolah', [FrontendController::class, 'fgetsemuasekolah'])->name('fgetsemuasekolah');
+
+Route::get('/semuasma', [FrontendController::class, 'semuasma'])->name('semuasma');
+
+Route::get('/fgetsemuasma', [FrontendController::class, 'fgetsemuasma'])->name('fgetsemuasma');
+
+Route::get('/semuasmp', [FrontendController::class, 'semuasmp'])->name('semuasmp');
+
+Route::get('/fgetsemuasmp', [FrontendController::class, 'fgetsemuasmp'])->name('fgetsemuasmp');
+
+Route::get('/semuasd', [FrontendController::class, 'semuasd'])->name('semuasd');
+
+Route::get('/fgetsemuasd', [FrontendController::class, 'fgetsemuasd'])->name('fgetsemuasd');
+
+Route::get('/semuatk', [FrontendController::class, 'semuatk'])->name('semuatk');
+
+Route::get('/fgetsemuatk', [FrontendController::class, 'fgetsemuatk'])->name('fgetsemuatk');
+
+Route::get('/semuapaud', [FrontendController::class, 'semuapaud'])->name('semuapaud');
+
+Route::get('/fgetsemuapaud', [FrontendController::class, 'fgetsemuapaud'])->name('fgetsemuapaud');
+
 
 /*------------------------------------------------------------------------*/
 

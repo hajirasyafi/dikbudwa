@@ -11,6 +11,6 @@ class Provinsi extends Model
 
     public function kota ()
     {
-        return $this->hasOne('App\Models\Kota');
+        return $this->hasMany('App\Models\Kota');
     }
 }

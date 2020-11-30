@@ -10,72 +10,9 @@
 @endsection
 @section('content')
 <div class="col-md-12">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Library</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data</li>
-        </ol>
-    </nav>
+{{ Breadcrumbs::render('sekolah') }}
 </div>
-<div class="col-md-12 mb-3">
-    <div class="card-deck">
-        <div class="card bg-secondary">
-            <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
-            <div class="card-body py-2 px-2">
-              <div class="card-title text-center text-white"><h5>Total Sekolah</h5></div>
-            </div>
-            <div class="card-footer">
-                <h2 class="card-text text-center text-white">{{$countall['countsekolah']}}</h2>
-            </div>
-        </div>
-        <div class="card bg-warning">
-            <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
-            <div class="card-body py-2">
-              <h5 class="card-title text-center text-white">Total SMA</h5>
-            </div>
-            <div class="card-footer">
-                <h2 class="card-text text-center text-white">{{$countall['countsma']}}</h2>
-            </div>
-        </div>
-        <div class="card bg-info">
-            <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
-            <div class="card-body py-2">
-              <h5 class="card-title text-center text-white">Total SMP</h5>
-            </div>
-            <div class="card-footer">
-                <h2 class="card-text text-center text-white">{{$countall['countsmp']}}</h2>
-            </div>
-        </div>
-        <div class="card bg-danger">
-            <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
-            <div class="card-body py-2">
-              <h5 class="card-title text-center text-white">Total SD</h5>
-            </div>
-            <div class="card-footer">
-                <h2 class="card-text text-center text-white">{{$countall['countsd']}}</h2>
-            </div>
-        </div>
-        <div class="card bg-primary">
-            <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
-            <div class="card-body py-2">
-              <h5 class="card-title text-center text-white">Total TK</h5>
-            </div>
-            <div class="card-footer">
-                <h2 class="card-text text-center text-white">{{$countall['counttk']}}</h2>
-            </div>
-        </div>
-        <div class="card bg-success">
-            <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
-            <div class="card-body py-2">
-              <h5 class="card-title text-center text-white">Total PAUD</h5>
-            </div>
-            <div class="card-footer">
-                <h2 class="card-text text-center text-white">{{$countall['countpaud']}}</h2>
-            </div>
-        </div>
-    </div>
-</div>
+@include('frontend.widgetsekolah')
 <div class="col-sm-12">
     <div class="card border-blue">
         <div class="card-header">
@@ -124,7 +61,9 @@ $(document).ready(function () {
             { data: 'paud', name: 'paud' }
         ],
         columnDefs: [
-            { className: "dt-center", "targets": [ 0, 2, 3, 4, 5, 6, 7]}
+            {   targets: [ 0, 2, 3, 4, 5, 6, 7],
+                className: 'text-center',
+            }
         ],
         order: [2, 'des'],
         scrollX: true,
