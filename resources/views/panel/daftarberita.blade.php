@@ -6,6 +6,9 @@
 @endsection
 
 @section('content')
+<div class="col-md-12">
+{{ Breadcrumbs::render('daftarberita') }}
+</div>
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">

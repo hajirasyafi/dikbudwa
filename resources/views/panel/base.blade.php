@@ -18,7 +18,7 @@
 @include('panel.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper py-4">
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">

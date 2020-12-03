@@ -61,3 +61,32 @@ Breadcrumbs::for('satuanpendidikanbc', function($trail, $satuanpendidikanbc, $on
 	$trail->parent('onkecamatan', $onkecamatan, $onkota, $onprovinsi);
 	$trail->push($satuanpendidikanbc->nama_sp, route('satuanpendidikan', $satuanpendidikanbc->npsn));
 });
+
+Breadcrumbs::for('panel', function($trail){
+	$trail->push('Beranda', route('panel'));
+});
+
+Breadcrumbs::for('daftarberita', function($trail){
+	$trail->parent('panel');
+	$trail->push('Daftar Berita', route('panel/daftarberita'));
+});
+
+Breadcrumbs::for('panelsekolah', function($trail){
+	$trail->parent('panel');
+	$trail->push('Sekolah', route('panel/sekolah'));
+});
+
+Breadcrumbs::for('spkota', function($trail, $provinsi){
+	$trail->parent('panelsekolah');
+	$trail->push($provinsi->name, route('panel/spkota', $provinsi->id));
+});
+
+Breadcrumbs::for('spkec', function($trail, $kota ,$provinsi){
+	$trail->parent('spkota', $provinsi);
+	$trail->push($kota->name, route('panel/spkec', $kota->id));
+});
+
+Breadcrumbs::for('spall', function($trail, $kecamatan, $kota ,$provinsi){
+	$trail->parent('spkec', $kota, $provinsi);
+	$trail->push($kecamatan->name, route('panel/spall', $kecamatan->id));
+});

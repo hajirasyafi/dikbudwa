@@ -3,7 +3,7 @@
 @section('content')
 <div class="card card-info" style="width: 100%;">
   <div class="card-header">
-    <h3 class="card-title">Sekolah Berdasarkan Wilayah</h3>
+    <h2 class="card-title">Tambah Sekolah</h2>
   </div>
     <form class="form-horizontal" action="{{route('storesekolah')}}" method="POST">
         @csrf
@@ -113,7 +113,8 @@
 <script>
     $(function(){
         $('select[name="province_id"]').ready(function() {
-            $.get('getprovinsi', function(data){
+            var route = '{{route('getprovinsi')}}';
+            $.get(route, function(data){
                 $('select[name="province_id"]').append('<option value="" selected disabled>-- Pilih Provinsi --</option>');
                 $.each(data, function(value, key) {
                     $('select[name="province_id"]').append('<option value="'+ value +'">'+ key +'</option>');
@@ -127,8 +128,10 @@
     $(function() {
         $('select[name="province_id"]').on('change', function() {
             var PROVINCE_ID = $(this).val();
+            var route = '{{route('getkota', "PROVINCE_ID")}}';
+            route = route.replace('PROVINCE_ID', PROVINCE_ID);
             if  (PROVINCE_ID) {
-                $.get('getkota/' + PROVINCE_ID, function(data) {
+                $.get(route, function(data) {
                     $('select[name="regency_id"]').empty();
                     $('select[name="regency_id"]').append('<option value="" selected disabled>-- Pilih Kota --</option>');
                     $.each(data, function(value, key) {
@@ -146,8 +149,10 @@
     $(function() {
         $('select[name="regency_id"]').on('change', function() {
             var REGENCY_ID = $(this).val();
+            var route = '{{route('getkecamatan', "REGENCY_ID")}}'
+            route = route.replace('REGENCY_ID', REGENCY_ID);
             if  (REGENCY_ID) {
-                $.get('getkecamatan/' + REGENCY_ID, function(data) {
+                $.get(route, function(data) {
                     $('select[name="district_id"]').empty();
                     $('select[name="district_id"]').append('<option value="" selected disabled>-- Pilih Kecamatan --</option>');
                     $.each(data, function(value, key) {
@@ -165,8 +170,10 @@
     $(function() {
         $('select[name="district_id"]').on('change', function() {
             var DISTRICT_ID = $(this).val();
+            var route = '{{route('getdesa', "DISTRICT_ID")}}';
+            route = route.replace('DISTRICT_ID', DISTRICT_ID);
             if  (DISTRICT_ID) {
-                $.get('getdesa/' + DISTRICT_ID, function(data) {
+                $.get(route, function(data) {
                     $('select[name="village_id"]').empty();
                     $('select[name="village_id"]').append('<option value="" selected disabled>-- Pilih Desa/Kelurahan --</option>');
                     $.each(data, function(value, key) {

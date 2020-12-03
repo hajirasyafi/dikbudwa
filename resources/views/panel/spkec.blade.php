@@ -3,6 +3,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
 @endsection
 @section('content')
+<div class="col-md-12">
+{{ Breadcrumbs::render('spkec', $kota, $provinsi) }}
+</div>
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
@@ -31,7 +34,7 @@
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
 $(function () {
-    var route = '{{route("getkecsp", (request()->segment(2)))}}';
+    var route = '{{route("getkecsp", (request()->segment(3)))}}';
     $('#sekolah').DataTable({
         processing: true,
         serverSide: true,
