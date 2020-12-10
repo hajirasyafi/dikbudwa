@@ -75,7 +75,7 @@ Route::get('/panel', [PanelController::class, 'panel'])->name('panel');
 
 Route::get('/panel/daftarberita', [PanelController::class, 'daftarberita'])->name('panel/daftarberita');
 
-Route::get('/panel/newseditor', [PanelController::class, 'newseditor']);
+Route::get('/panel/newseditor', [PanelController::class, 'newseditor'])->name('panel/newseditor');
 
 Route::get('/panel/sekolah', [PanelController::class, 'sekolah'])->name('panel/sekolah');
 
@@ -87,6 +87,8 @@ Route::get('/panel/spkec/{id}', [PanelController::class, 'spkec'])->name('panel/
 Route::get('/panel/spall/{id}', [PanelController::class, 'spall'])->name('panel/spall');
 
 Route::get('/panel/sp/{id}', [PanelController::class, 'sp'])->name('panel/sp');
+
+Route::get('/panel/editberita/{id}', [PanelController::class, 'editberita'])->name('panel/editberita');
 
 
 /*------------------------------------------------------------------------*/
@@ -102,6 +104,12 @@ Route::post('/storeberita', [BeritaController::class, 'storeberita'])->name('sto
 Route::get('/getdaftarberita', [BeritaController::class, 'getdaftarberita'])->name('getdaftarberita');
 
 Route::get('/deleteberita/{id}', [BeritaController::class, 'deleteberita'])->name('deleteberita');
+
+Route::get('/setpub/{id}/{status}', [BeritaController::class, 'setpub'])->name('setpub');
+
+Route::get('/getpub/{id}', [BeritaController::class, 'getpub'])->name('getpub');
+
+Route::post('/updateberita/{id}', [BeritaController::class, 'updateberita'])->name('updateberita');
 
 /*------------------------------------------------------------------------*/
 
@@ -124,6 +132,8 @@ Route::get('/getkecsp/{id}', [SekolahController::class, 'getkecsp'])->name('getk
 Route::get('/getallsp/{id}', [SekolahController::class, 'getallsp'])->name('getallsp');
 
 Route::get('/getsp/{id}', [SekolahController::class, 'getsp'])->name('getsp');
+
+Route::get('/deletesekolah/{id}', [SekolahController::class, 'deletesekolah'])->name('deletesekolah');
 
 /*------------------------------------------------------------------------*/
 

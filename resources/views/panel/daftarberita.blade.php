@@ -9,6 +9,27 @@
 <div class="col-md-12">
 {{ Breadcrumbs::render('daftarberita') }}
 </div>
+
+<div class="col-md-3 col-sm-6 col-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-info"><i class="fas fa-pen-square"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text"><strong>Buat berita baru</strong></span>
+            <a href="{{route('panel/newseditor')}}" class="stretched-link"></a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3 col-sm-6 col-12">
+    <div class="info-box">
+        <span class="info-box-icon bg-success"><i class="fas fa-newspaper"></i></span>
+        <div class="info-box-content">
+            <span class="info-box-text">Total berita</span>
+            <span class="info-box-number">{{$countberita}}</span>
+        </div>
+    </div>
+</div>
+
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
@@ -21,6 +42,7 @@
                         <th>No.</th>
                         <th>Judul Berita</th>
                         <th>Pilihan</th>
+                        <th>Publish</th>
                     </tr>
                 </thead>
             </table>
@@ -48,11 +70,10 @@
   </div>
 </div>
 @endsection
-
 @section('script')
-
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
 <script>
 $(function() {
     $('#daftarberita').DataTable({
@@ -64,30 +85,79 @@ $(function() {
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false },
             { data: 'title_berita', name: 'title_berita' },
             { data: 'action', name: 'action', orederable: false, searchable: false},
-        ]
+            { data: 'publish', name: 'publish', orederable: false, searchable: false},
+        ],
     });
 });
 </script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var deleteID;
-        $('body').on('click', '#getDeleteId', function () {
-            deleteID = $(this).data('id');
-        })
-        $('#SubmitDeleteProductForm').click(function(e) {
+
+<script>
+    $(function(){
+        var dataID;
+        var status;
+        $('body').on('click', '#publish', function(e){
             e.preventDefault();
-            var id = deleteID;
+            dataID = $(this).data('id');
+            status = $(this).attr('status');
+        });
+        $('body').on('click', '#publish', function(e){
+            e.preventDefault();
+            dataID = $(this).data('id');
+            
+            if (status == 1) {
+                status = 0;
+            } else {
+                status = 1;
+            }
+            var routeset = '{{route('setpub', ['id'=>"id", 'status'=>"status"])}}';
+            var routeget = '{{route('getpub', "id")}}';
+            routeget = routeget.replace('id', dataID);
+            routeset = routeset.replace('id', dataID);
+            routeset = routeset.replace('status', status);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             $.ajax({
-                url: "deleteberita/"+id,
+                url: routeset,
+                method: 'get',
+            });
+            $('a[name='+dataID+']', function() {
+                $('a[name='+dataID+']').attr('status', status);
+                if (status == 1) {
+                    $('a[name='+dataID+']').addClass('btn-success').removeClass('btn-danger');
+                    $('a[name='+dataID+']').html("AKTIF");
+                } else {
+                    $('a[name='+dataID+']').addClass('btn-danger').removeClass('btn-success');
+                    $('a[name='+dataID+']').html("TIDAK");
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var deleteID;
+        $('body').on('click', '#getDeleteId', function () {
+            deleteID = $(this).data('id');
+        });
+        $('#SubmitDeleteProductForm').click(function(e) {
+            e.preventDefault();
+            var id = deleteID;
+            var route = '{{route('deleteberita', "id")}}';
+            route = route.replace('id', id);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: route,
                 method: 'get',
                 success: function (result) {
-                        $('#daftarberita').DataTable().ajax.reload();
                         $('#deleteModal').modal('hide');
+                        window.location.reload();
                 }
             });
         });

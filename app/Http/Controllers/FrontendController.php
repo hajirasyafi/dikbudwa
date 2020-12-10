@@ -17,8 +17,8 @@ class FrontendController extends Controller
 {
     public function beranda()
     {
-        $berita_models = DB::table('berita_models')->paginate(5);
-        strip_tags($berita_models);
+        $berita_models = BeritaModel::where('publish_status', '=', '1')->paginate(5);
+        ($berita_models);
         return view('frontend.listberita', ['berita_models'=>$berita_models]);
     }
 

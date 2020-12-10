@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         	KotaSeeder::class,
         	KecamatanSeeder::class,
         	DesaSeeder::class,
+            SekolahSeeder::class,
         ]);
     }
 }

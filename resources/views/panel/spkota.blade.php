@@ -1,6 +1,12 @@
 @extends('panel.base')
 @section('css')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css"/>
+<style type="text/css">
+    table.dataTable td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+</style>
 @endsection
 @section('content')
 
@@ -10,11 +16,11 @@
 
 <div class="col-sm-12">
     <div class="card">
-        <div class="card-header">
-            <div class="card-tittle">DAFTAR SEKOLAH PERWILAYAH</div>
+        <div class="card-header bg-info">
+            <div class="card-tittle text-center"><h3><strong>DAFTAR SEKOLAH PERWILAYAH</strong></h3></div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered" id="sekolah" class="display nowrap" style="width:100%">
+            <table class="table table-striped hover display compact" id="sekolah" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -33,7 +39,9 @@
 </div>
 @endsection
 @section('script')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 <script>
 $(function () {
     var route = '{{route("getkotasp", (request()->segment(3)))}}';
@@ -57,7 +65,9 @@ $(function () {
             { data: 'paud', name: 'paud' }
         ],
         columnDefs: [
-            { className: "dt-center", "targets": [ 0, 2, 3, 4, 5, 6, 7]}
+            {   targets: [ 0, 2, 3, 4, 5, 6, 7],
+                className: 'text-center',
+            }
         ],
         order: [2, 'des'],
         scrollX: true,

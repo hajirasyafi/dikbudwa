@@ -12,12 +12,12 @@
             <div class="card-header">
               <h3 class="card-title">Buat postingan baru</h3>
             </div>
-            <form role="form" method="post" action="{{route('storeberita')}}">
+            <form role="form" method="post" action="{{route('updateberita', $berita->id)}}">
               @csrf
               <div class="card-body">
                 <div class="form-group">
                   <label for="judul" id="judul">Judul</label>
-                  <input type="text" name="title_berita" class="form-control" id="judul" required>
+                  <input type="text" name="title_berita" class="form-control" id="judul" required value="{{$berita->title_berita}}">
                 </div>
                 <div id="standalone-container">
                   <div id="toolbar-container">
@@ -80,15 +80,16 @@
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.4.1/build/highlight.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
-
   var quill = new Quill('#description', {
     modules: {
       syntax: true,
       toolbar: '#toolbar-container'
     },
     placeholder: 'Ketik teks disini....',
-    theme: 'snow'
+    theme: 'snow',
   });
+  quill.setContents([
+      { insert: '{!!$berita->description!!}' }
+    ]);
 </script>
-
 @endsection

@@ -14,6 +14,16 @@ use DataTables;
 
 class SekolahController extends Controller
 {
+    public function deletesekolah($id)
+    {
+        $sekolah = Sekolah::where('npsn', $id)->first();
+        $sekolah->delete();
+        $redirect = route('panel/sekolah');
+        return response()->json(array(
+            'success' => true,
+            'redirect' => $redirect
+        ));
+    }
 
     public function storesekolah(Request $request)
     {
@@ -125,6 +135,13 @@ class SekolahController extends Controller
         }
         return DataTables::of($dataMap)
         ->addIndexColumn()
+        ->addColumn('action', function ($sekolah) {
+            return '<div class="btn-group" role="group">
+                        <a href="'.route('panel/sp', $sekolah->npsn).'" type="button" class="btn btn-sm btn-info"><i class="material-icons align-middle">visibility</i></a>
+                        <a href="#" type="button" class="btn btn-sm btn-success"><i class="material-icons align-middle">edit</i></a>
+                        <a href="#" type="button" class="btn btn-sm btn-danger" data-id="'.$sekolah->npsn.'" data-toggle="modal" data-target="#deleteModal" id="getDeleteId"><i class="material-icons align-middle">delete</i></a>
+                    </div>';
+        })
         ->toJson();
     }
 

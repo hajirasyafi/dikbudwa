@@ -105,6 +105,9 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
+                <li class="nav-item pr-4 float-right">
+                    <a href="#" class="nav-link">Login</a>
+                </li>
             </ul>
         </div>
     </div>

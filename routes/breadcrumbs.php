@@ -90,3 +90,8 @@ Breadcrumbs::for('spall', function($trail, $kecamatan, $kota ,$provinsi){
 	$trail->parent('spkec', $kota, $provinsi);
 	$trail->push($kecamatan->name, route('panel/spall', $kecamatan->id));
 });
+
+Breadcrumbs::for('spbc', function($trail, $spbc, $kecamatan, $kota, $provinsi) {
+	$trail->parent('spall', $kecamatan, $kota, $provinsi);
+	$trail->push($spbc->nama_sp, route('panel/sp', $spbc->npsn));
+});
