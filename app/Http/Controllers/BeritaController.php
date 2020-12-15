@@ -21,10 +21,9 @@ class BeritaController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }else{
-            $description = $dom->saveHTML();
             $beritamodel = new BeritaModel;
             $beritamodel->title_berita = $request->title_berita;
-            $beritamodel->description = $description;
+            $beritamodel->description = $request->description;
             $beritamodel->publish_status = $request->publish_status;
             $beritamodel->slug = Str::slug($request->title_berita);
             $beritamodel->save();
