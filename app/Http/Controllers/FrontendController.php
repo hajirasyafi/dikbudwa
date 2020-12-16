@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use App\Models\BeritaModel;
 use App\Models\Sekolah;
 use App\Models\Provinsi;
@@ -18,7 +19,6 @@ class FrontendController extends Controller
     public function beranda()
     {
         $berita_models = BeritaModel::where('publish_status', '=', '1')->paginate(5);
-        ($berita_models);
         return view('frontend.listberita', ['berita_models'=>$berita_models]);
     }
 
