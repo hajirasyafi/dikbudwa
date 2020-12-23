@@ -32,10 +32,11 @@
 @section('script')
 <script src="{{asset('summernote/summernote-bs4.min.js')}}"></script>
 <script>
-$(document).ready(function() {
-$('#description').summernote({
-    placeholder: 'Masukkan teks disini...',
-});
+$(function(){
+  $('#description').summernote({
+      placeholder: "Ketik teks disini...",
+
+  });
 });
 </script>
 @endsection

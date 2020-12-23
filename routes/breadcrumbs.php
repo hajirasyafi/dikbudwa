@@ -5,6 +5,15 @@ Breadcrumbs::for('beranda', function ($trail) {
     $trail->push('Beranda', url('/'));
 });
 
+Breadcrumbs::for('semuaberita', function($trail) {
+	$trail->parent('beranda');
+	$trail->push('Berita', route('semuaberita'));
+});
+
+Breadcrumbs::for('berita', function($trail, $berita_models) {
+	$trail->parent('semuaberita');
+	$trail->push($berita_models->slug, route('berita', $berita_models->slug));
+});
 
 Breadcrumbs::for('semuasekolah', function($trail) {
 	$trail->parent('sekolah');

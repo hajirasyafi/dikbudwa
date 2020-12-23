@@ -28,6 +28,12 @@ class FrontendController extends Controller
         return view('frontend.tampilberita', ['berita_models'=>$berita_models]);
     }
 
+    public function semuaberita()
+    {
+        $berita_models = BeritaModel::where('publish_status', '=', '1')->paginate(5);
+        return view('frontend.semuaberita', ['berita_models'=>$berita_models]);
+    }
+
     public function sekolah()
     {
         return view('frontend.sekolah');

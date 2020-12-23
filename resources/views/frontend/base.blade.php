@@ -80,7 +80,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="NavbarToggler01">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item pr-4">
                     <a href="{{url('/')}}" class="nav-link">Beranda</a>
                 </li>
@@ -91,7 +91,7 @@
                     <a href="#" class="nav-link">Visi dan Misi</a>
                 </li>
                 <li class="nav-item pr-4">
-                    <a href="#" class="nav-link">Ruang Lingkup</a>
+                    <a href="{{route('semuaberita')}}" class="nav-link">Berita</a>
                 </li>
                 <li class="nav-item pr-4">
                     <a href="#" class="nav-link">Organisasi</a>
@@ -105,8 +105,10 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
-                <li class="nav-item pr-4 float-right">
-                    <a href="#" class="nav-link">Login</a>
+            </ul>
+            <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
+                <li class="nav-item float-right">
+                    <a href="{{route('panel')}}" class="nav-link">Login</a>
                 </li>
             </ul>
         </div>

@@ -18,6 +18,8 @@ Route::get('/', [FrontendController::class, 'beranda'])->name('beranda');
 
 Route::get('/berita/{slug}', [FrontendController::class, 'showberita'])->name('berita');
 
+Route::get('/semuaberita', [FrontendController::class, 'semuaberita'])->name('semuaberita');
+
 Route::get('/sekolah', [FrontendController::class, 'sekolah'])->name('sekolah');
 
 Route::get('/fgetprovsp', [FrontendController::class, 'fgetprovsp'])->name('fgetprovsp');
