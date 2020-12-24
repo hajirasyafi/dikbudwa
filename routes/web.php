@@ -65,92 +65,102 @@ Route::get('/fgetsemuapaud', [FrontendController::class, 'fgetsemuapaud'])->name
 
 /*------------------------------------------------------------------------*/
 
-/*
-|--------------------------------------------------------------------------
-| PanelController
-|--------------------------------------------------------------------------
-*/
+Route::middleware(['auth'])->group(function () {
+    /*
+    |--------------------------------------------------------------------------
+    | PanelController
+    |--------------------------------------------------------------------------
+    */
 
-Route::get('/panel/tambahsekolah', [PanelController::class, 'tambahsekolah'])->name('panel/tambahsekolah');
+    Route::get('/panel/tambahsekolah', [PanelController::class, 'tambahsekolah'])->name('panel/tambahsekolah');
 
-Route::get('/panel', [PanelController::class, 'panel'])->name('panel');
+    Route::get('/panel', [PanelController::class, 'panel'])->name('panel');
 
-Route::get('/panel/daftarberita', [PanelController::class, 'daftarberita'])->name('panel/daftarberita');
+    Route::get('/panel/daftarberita', [PanelController::class, 'daftarberita'])->name('panel/daftarberita');
 
-Route::get('/panel/newseditor', [PanelController::class, 'newseditor'])->name('panel/newseditor');
+    Route::get('/panel/newseditor', [PanelController::class, 'newseditor'])->name('panel/newseditor');
 
-Route::get('/panel/sekolah', [PanelController::class, 'sekolah'])->name('panel/sekolah');
-
-
-Route::get('/panel/spkota/{id}', [PanelController::class, 'spkota'])->name('panel/spkota');
-
-Route::get('/panel/spkec/{id}', [PanelController::class, 'spkec'])->name('panel/spkec');
-
-Route::get('/panel/spall/{id}', [PanelController::class, 'spall'])->name('panel/spall');
-
-Route::get('/panel/sp/{id}', [PanelController::class, 'sp'])->name('panel/sp');
-
-Route::get('/panel/editberita/{id}', [PanelController::class, 'editberita'])->name('panel/editberita');
+    Route::get('/panel/sekolah', [PanelController::class, 'sekolah'])->name('panel/sekolah');
 
 
-/*------------------------------------------------------------------------*/
+    Route::get('/panel/spkota/{id}', [PanelController::class, 'spkota'])->name('panel/spkota');
 
-/*
-|--------------------------------------------------------------------------
-| BeritaController
-|--------------------------------------------------------------------------
-*/
+    Route::get('/panel/spkec/{id}', [PanelController::class, 'spkec'])->name('panel/spkec');
 
-Route::post('/storeberita', [BeritaController::class, 'storeberita'])->name('storeberita');
+    Route::get('/panel/spall/{id}', [PanelController::class, 'spall'])->name('panel/spall');
 
-Route::get('/getdaftarberita', [BeritaController::class, 'getdaftarberita'])->name('getdaftarberita');
+    Route::get('/panel/sp/{id}', [PanelController::class, 'sp'])->name('panel/sp');
 
-Route::get('/deleteberita/{id}', [BeritaController::class, 'deleteberita'])->name('deleteberita');
-
-Route::get('/setpub/{id}/{status}', [BeritaController::class, 'setpub'])->name('setpub');
-
-Route::get('/getpub/{id}', [BeritaController::class, 'getpub'])->name('getpub');
-
-Route::post('/updateberita/{id}', [BeritaController::class, 'updateberita'])->name('updateberita');
-
-/*------------------------------------------------------------------------*/
-
-/*
-|--------------------------------------------------------------------------
-| SekolahController
-|--------------------------------------------------------------------------
-*/
+    Route::get('/panel/editberita/{id}', [PanelController::class, 'editberita'])->name('panel/editberita');
 
 
+    /*------------------------------------------------------------------------*/
 
-Route::post('/storesekolah', [SekolahController::class, 'storesekolah'])->name('storesekolah');
+    /*
+    |--------------------------------------------------------------------------
+    | BeritaController
+    |--------------------------------------------------------------------------
+    */
 
-Route::get('/getprovsp', [SekolahController::class, 'getprovsp'])->name('getprovsp');
+    Route::post('/storeberita', [BeritaController::class, 'storeberita'])->name('storeberita');
 
-Route::get('/getkotasp/{id}', [SekolahController::class, 'getkotasp'])->name('getkotasp');
+    Route::get('/getdaftarberita', [BeritaController::class, 'getdaftarberita'])->name('getdaftarberita');
 
-Route::get('/getkecsp/{id}', [SekolahController::class, 'getkecsp'])->name('getkecsp');
+    Route::get('/deleteberita/{id}', [BeritaController::class, 'deleteberita'])->name('deleteberita');
 
-Route::get('/getallsp/{id}', [SekolahController::class, 'getallsp'])->name('getallsp');
+    Route::get('/setpub/{id}/{status}', [BeritaController::class, 'setpub'])->name('setpub');
 
-Route::get('/getsp/{id}', [SekolahController::class, 'getsp'])->name('getsp');
+    Route::get('/getpub/{id}', [BeritaController::class, 'getpub'])->name('getpub');
 
-Route::get('/deletesekolah/{id}', [SekolahController::class, 'deletesekolah'])->name('deletesekolah');
+    Route::post('/updateberita/{id}', [BeritaController::class, 'updateberita'])->name('updateberita');
 
-/*------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------*/
 
-/*
-|--------------------------------------------------------------------------
-| WilayahController
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | SekolahController
+    |--------------------------------------------------------------------------
+    */
 
-Route::get('/getprovinsi', [WilayahController::class, 'getprovinsi'])->name('getprovinsi');
 
-Route::get('/getkota/{province_id}', [WilayahController::class, 'getkota'])->name('getkota');
 
-Route::get('/getkecamatan/{regency_id}', [WilayahController::class, 'getkecamatan'])->name('getkecamatan');
+    Route::post('/storesekolah', [SekolahController::class, 'storesekolah'])->name('storesekolah');
 
-Route::get('/getdesa/{district_id}', [WilayahController::class, 'getdesa'])->name('getdesa');
+    Route::get('/getprovsp', [SekolahController::class, 'getprovsp'])->name('getprovsp');
 
-/*------------------------------------------------------------------------*/
+    Route::get('/getkotasp/{id}', [SekolahController::class, 'getkotasp'])->name('getkotasp');
+
+    Route::get('/getkecsp/{id}', [SekolahController::class, 'getkecsp'])->name('getkecsp');
+
+    Route::get('/getallsp/{id}', [SekolahController::class, 'getallsp'])->name('getallsp');
+
+    Route::get('/getsp/{id}', [SekolahController::class, 'getsp'])->name('getsp');
+
+    Route::get('/deletesekolah/{id}', [SekolahController::class, 'deletesekolah'])->name('deletesekolah');
+
+    /*------------------------------------------------------------------------*/
+
+    /*
+    |--------------------------------------------------------------------------
+    | WilayahController
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/getprovinsi', [WilayahController::class, 'getprovinsi'])->name('getprovinsi');
+
+    Route::get('/getkota/{province_id}', [WilayahController::class, 'getkota'])->name('getkota');
+
+    Route::get('/getkecamatan/{regency_id}', [WilayahController::class, 'getkecamatan'])->name('getkecamatan');
+
+    Route::get('/getdesa/{district_id}', [WilayahController::class, 'getdesa'])->name('getdesa');
+
+    /*------------------------------------------------------------------------*/
+
+});
+
+
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

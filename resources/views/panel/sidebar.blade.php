@@ -67,6 +67,16 @@
               <p>Berita</p>
             </a>
           </li>
+          <form action="{{route('logout')}}" method="POST">
+          @csrf
+          <li class="nav-item">
+              <a href="{{route('logout')}}" class="nav-link" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+              <i class="material-icons-round align-middle">login</i>
+                <p>Logout</p>
+              </a>
+          </li>
+          </form>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
