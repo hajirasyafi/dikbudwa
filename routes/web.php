@@ -6,6 +6,7 @@ Use App\Http\Controllers\PanelController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\WilayahController;
+use App\Http\Controllers\ChartController;
 
 
 /*
@@ -158,9 +159,6 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-
-// Route::get('/', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+Route::get('/chartsekolah', [ChartController::class, 'chartsekolah'])->name('chartsekolah');
 
 require __DIR__.'/auth.php';

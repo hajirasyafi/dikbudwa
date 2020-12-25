@@ -14,7 +14,7 @@ class PanelController extends Controller
 {
     public function panel()
     {
-        return view('panel.base');
+        return view('panel.panel');
     }
 
     public function daftarberita()
