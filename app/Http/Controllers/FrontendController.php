@@ -12,6 +12,9 @@ use App\Models\Provinsi;
 use App\Models\Kota;
 use App\Models\Kecamatan;
 use App\Models\Desa;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
+use Spatie\Searchable\Search;
 use DataTables;
 
 class FrontendController extends Controller
@@ -36,7 +39,15 @@ class FrontendController extends Controller
 
     public function sekolah()
     {
-        return view('frontend.sekolah');
+        $countall = [
+            'countsekolah' => Sekolah::count(),
+            'countsma' => Sekolah::where('jenjang', 'SMA')->count(),
+            'countsmp' => Sekolah::where('jenjang', 'SMP')->count(),
+            'countsd' => Sekolah::where('jenjang', 'SD')->count(),
+            'counttk' => Sekolah::where('jenjang', 'TK')->count(),
+            'countpaud' => Sekolah::where('jenjang', 'PAUD')->count()
+        ];
+        return view('frontend.sekolah', ['countall'=>$countall]);
     }
 
     public function fgetprovsp ()
@@ -145,10 +156,10 @@ class FrontendController extends Controller
     {        
         $sekolah = Sekolah::with('getDesa')->where('district_id', $id)->get();
         $dataMap = [];
-        foreach($sekolah as $k => $s){
-            $dataMap[$k] = $s;
-            $dataMap[$k]->desa = $s->getDesa->name;
-            $dataMap[$k]->link = route('satuanpendidikan', $s->npsn);
+        foreach($sekolah as $key => $value){
+            $dataMap[$key] = $value;
+            $dataMap[$key]->desa = $value->getDesa->name;
+            $dataMap[$key]->link = route('satuanpendidikan', $value->npsn);
         }
         return DataTables::of($dataMap)
         ->addIndexColumn()
@@ -330,5 +341,13 @@ class FrontendController extends Controller
         return DataTables::of($getsekolah)
                 ->addIndexColumn()
                 ->toJson();
+    }
+
+    public function search(Request $request)
+    {
+        $searchResults = (new Search())
+        ->registerModel(BeritaModel::class, 'description')
+        ->search($request->search);
+        return view('frontend.pencarian', ['searchResults'=>$searchResults]);
     }
 }

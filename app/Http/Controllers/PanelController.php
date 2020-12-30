@@ -14,7 +14,15 @@ class PanelController extends Controller
 {
     public function panel()
     {
-        return view('panel.panel');
+        $countall = [
+            'countsekolah' => Sekolah::count(),
+            'countsma' => Sekolah::where('jenjang', 'SMA')->count(),
+            'countsmp' => Sekolah::where('jenjang', 'SMP')->count(),
+            'countsd' => Sekolah::where('jenjang', 'SD')->count(),
+            'counttk' => Sekolah::where('jenjang', 'TK')->count(),
+            'countpaud' => Sekolah::where('jenjang', 'PAUD')->count()
+        ];
+        return view('panel.panel', ['countall'=>$countall]);
     }
 
     public function daftarberita()
@@ -35,7 +43,15 @@ class PanelController extends Controller
 
     public function sekolah()
     {
-        return view('panel.sekolah');
+        $countall = [
+            'countsekolah' => Sekolah::count(),
+            'countsma' => Sekolah::where('jenjang', 'SMA')->count(),
+            'countsmp' => Sekolah::where('jenjang', 'SMP')->count(),
+            'countsd' => Sekolah::where('jenjang', 'SD')->count(),
+            'counttk' => Sekolah::where('jenjang', 'TK')->count(),
+            'countpaud' => Sekolah::where('jenjang', 'PAUD')->count()
+        ];
+        return view('panel.sekolah', ['countall'=>$countall]);
     }
 
     public function spkota($id)

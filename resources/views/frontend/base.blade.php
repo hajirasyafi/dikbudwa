@@ -16,46 +16,6 @@
   @yield('css')
 </head>
 <body>
-
-<!-- <div class="wrapper">
-	<header class="header">
-		<div class="py-sm-2 bg-light border-bottom">
-			<div class="container">
-				<div class="d-flex justify-content-between">
-					<ul class="list-unstyled m-0">
-						<li class="d-inline-block pr-3">
-							<a href="tel:(0354)776202" class="d-inline-block">
-								<i class="material-icons md-20 align-middle">phone</i>
-								<span class="align-middle">(0354) 776202</span>
-							</a>
-						</li>
-						<li class="d-inline-block pr-3">
-							<a href="mailto:smaswahidiyah@gmail.com" class="d-inline-block">
-								<i class="material-icons md-20 align-middle">email</i>
-								<span class="align-middle">smaswahidiyah@gmail.com</span>
-							</a>
-						</li>
-					</ul>
-					<ul class="list-unstyled m-0">
-						<li class="d-inline-block pr-3">
-							<a href="tel:(0354)776202" class="d-inline-block">
-								<i class="material-icons md-20 align-middle">phone</i>
-								<span class="align-middle">(0354) 776202</span>
-							</a>
-						</li>
-						<li class="d-inline-block pr-3">
-							<a href="mailto:smaswahidiyah@gmail.com" class="d-inline-block">
-								<i class="material-icons md-20 align-middle">email</i>
-								<span class="align-middle">smaswahidiyah@gmail.com</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</header>
-</div> -->
-
 <div class="header border-bottom border-top">
 	<div class="py-3 bg-hijau">
 		<div class="container">
@@ -96,7 +56,7 @@
                 <li class="nav-item pr-4">
                     <a href="#" class="nav-link">Organisasi</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown pr-4">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Action</a>
@@ -105,6 +65,12 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </li>
+                <form class="d-flex align-items-center" action="{{route('search')}}">
+                  @csrf
+                  <div class="input-group">
+                    <input type="search" name="search" class="form-control text-muted" placeholder="Cari berita...">
+                  </div>
+              </form>
             </ul>
             <ul class="nav navbar-nav navbar-right mt-2 mt-lg-0">
                 <li class="nav-item float-right">

@@ -5,36 +5,30 @@ title: Introduction
 
 AdminLTE can be installed using multiple methods. Pick your favorite method from the list below. Please be sure to check the dependencies section before continuing. 
 
-## Download
-{: .h3 }
+#### Download
 
-### From GitHub
-
-Visit the releases section on GitHub and download the [latest release](https://github.com/ColorlibHQ/AdminLTE/releases).
+###### __From Github__
+Visit the releases section on Github and download the [latest release](https://github.com/ColorlibHQ/AdminLTE/releases).
 
 
-### Command Line
+#### Command Line
 
-#### Via NPM
-
+###### __Via NPM__
 ```bash
 npm install admin-lte@^3.0 --save
 ```
 
-#### Via Yarn
-
+###### __Via Yarn__
 ```bash
 yarn add admin-lte@^3.0
 ```
 
-#### Via Composer
-
+###### __Via Composer__
 ```bash
 composer require "almasaeed2010/adminlte=~3.0"
 ```
 
-#### Via Git
-
+###### __Via Git__
 ```bash
 git clone https://github.com/ColorlibHQ/AdminLTE.git
 ```

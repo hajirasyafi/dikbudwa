@@ -63,6 +63,8 @@ Route::get('/semuapaud', [FrontendController::class, 'semuapaud'])->name('semuap
 
 Route::get('/fgetsemuapaud', [FrontendController::class, 'fgetsemuapaud'])->name('fgetsemuapaud');
 
+Route::get('/search', [FrontendController::class, 'search'])->name('search');
+
 
 /*------------------------------------------------------------------------*/
 
@@ -157,8 +159,9 @@ Route::middleware(['auth'])->group(function () {
 
     /*------------------------------------------------------------------------*/
 
-});
+    Route::get('/chartsekolah', [ChartController::class, 'chartsekolah'])->name('chartsekolah');
+    Route::get('chartspnasional', [ChartController::class, 'chartspnasional'])->name('chartspnasional');
 
-Route::get('/chartsekolah', [ChartController::class, 'chartsekolah'])->name('chartsekolah');
+});
 
 require __DIR__.'/auth.php';
