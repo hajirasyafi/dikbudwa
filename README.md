@@ -16,9 +16,10 @@
 - php artisan migrate
 - php artisan db:seed
 
-5. Import manual file database berikut melalui **phpMyAdmin** ke database yang kita buat tadi :
-	- file **desas.sql** yang berada didalam folder** /dikbudwa/database/seeders/**
-	- file **sekolahs.sql** yang berada didalam folder** /dikbudwa/database/seeders**/
+5. Import manual file database berikut melalui **phpMyAdmin** ke database yang kita buat tadi
+    - file **desas.sql** yang berada didalam folder **dikbudwa/database/seeders**
+    - file **sekolahs.sql** yang berada didalam folder **dikbudwa/database/seeders**
+    
 6. Langkah instalasi selesai selanjutnya registrasi user melalui :
 	[localhost/dikbudwa/public/register](http://localhost/dikbudwa/public/register "localhost/dikbudwa/public/register")
 	
