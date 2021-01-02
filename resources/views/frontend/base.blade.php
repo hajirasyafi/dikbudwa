@@ -68,7 +68,7 @@
                 <form class="d-flex align-items-center" action="{{route('search')}}">
                   @csrf
                   <div class="input-group">
-                    <input type="search" name="search" class="form-control text-muted" placeholder="Cari berita...">
+                    <input type="search" name="search" class="form-control text-muted" autocomplete="off" placeholder="Cari berita...">
                   </div>
               </form>
             </ul>

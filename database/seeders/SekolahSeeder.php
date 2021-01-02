@@ -14,39 +14,6 @@ class SekolahSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sekolahs')->insert(array(
-        	[
-        	'nama_sp' => 'SMAS Wahidiyah',
-        	'jenjang' => 'SMA',
-        	'npsn' => '20534390',
-        	'alamat' => 'Jl. KH. Wachid Hasyim',
-        	'rt' => 17,
-        	'rw' => 3,
-        	'kodepos' => 64114,
-        	'email' => 'smaswahidiyah@gmail.com',
-        	'phone' => '(0354) 717717',
-        	'website' => 'smawa.sch.id',
-        	'province_id' => 35,
-        	'regency_id' => 3571,
-        	'district_id' => 357101,
-        	'village_id' => 3571011001
-        	],
-        	[
-        	'nama_sp' => 'SMP Wahidiyah',
-        	'jenjang' => 'SMP',
-        	'npsn' => '20534370',
-        	'alamat' => 'Jl. KH. Wachid Hasyim',
-        	'rt' => 17,
-        	'rw' => 3,
-        	'kodepos' => 64114,
-        	'email' => 'smpwahidiyah@gmail.com',
-        	'phone' => '(0354) 717717',
-        	'website' => 'smawa.sch.id',
-        	'province_id' => 35,
-        	'regency_id' => 3571,
-        	'district_id' => 357101,
-        	'village_id' => 3571011001
-        	]
-        ));
+        DB::unprepared(file_get_contents(__DIR__ . '/sekolahs.sql'));
     }
 }
