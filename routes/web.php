@@ -134,9 +134,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/deleteberita/{id}', [BeritaController::class, 'deleteberita'])->name('deleteberita');
 
-    Route::get('/setpub/{id}/{status}', [BeritaController::class, 'setpub'])->name('setpub');
+    Route::get('/setpub/{idberita}/{status}', [BeritaController::class, 'setpub'])->name('setpub');
 
-    Route::get('/getpub/{id}', [BeritaController::class, 'getpub'])->name('getpub');
+    Route::get('/getpub/{idberita}', [BeritaController::class, 'getpub'])->name('getpub');
 
     Route::post('/updateberita/{id}', [BeritaController::class, 'updateberita'])->name('updateberita');
 
