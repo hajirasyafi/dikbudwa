@@ -132,7 +132,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/getdaftarberita', [BeritaController::class, 'getdaftarberita'])->name('getdaftarberita');
 
-    Route::get('/deleteberita/{id}', [BeritaController::class, 'deleteberita'])->name('deleteberita');
+    Route::get('/deleteberita/{idberita}', [BeritaController::class, 'deleteberita'])->name('deleteberita');
 
     Route::get('/setpub/{idberita}/{status}', [BeritaController::class, 'setpub'])->name('setpub');
 

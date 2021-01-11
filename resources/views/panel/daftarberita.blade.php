@@ -145,8 +145,8 @@ $(function() {
         $('#SubmitDeleteProductForm').click(function(e) {
             e.preventDefault();
             var id = deleteID;
-            var route = '{{route('deleteberita', "id")}}';
-            route = route.replace('id', id);
+            var route = '{{route('deleteberita', "idberita")}}';
+            route = route.replace('idberita', id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
