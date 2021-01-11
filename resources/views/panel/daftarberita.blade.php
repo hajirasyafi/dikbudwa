@@ -109,8 +109,8 @@ $(function() {
             } else {
                 status = 1;
             }
-            var routeset = '{{route('setpub', ['id'=>"id", 'status'=>"status"])}}';
-            var routeget = '{{route('getpub', "id")}}';
+            var routeset = '{{url('setpub', ['id'=>"id", 'status'=>"status"])}}';
+            var routeget = '{{url('getpub', "id")}}';
             routeget = routeget.replace('id', dataID);
             routeset = routeset.replace('id', dataID);
             routeset = routeset.replace('status', status);
@@ -145,7 +145,7 @@ $(function() {
         $('#SubmitDeleteProductForm').click(function(e) {
             e.preventDefault();
             var id = deleteID;
-            var route = '{{route('deleteberita', "id")}}';
+            var route = '{{url('deleteberita', "id")}}';
             route = route.replace('id', id);
             $.ajaxSetup({
                 headers: {
