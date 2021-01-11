@@ -4,13 +4,13 @@
 @endsection
 @section('content')
 
-<div class="col-md-12 mb-3 d-none d-sm-block">
+<div class="col-md-12 mb-3">
     <div class="card-deck">
         <div class="card bg-secondary">
             <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
             <div class="card-body py-2 px-2">
               <div class="text-center text-white"><h5>Total Sekolah</h5></div>
-              <a href="{{route('semuasekolah')}}" class="stretched-link"></a>
+              <a href="{{ $url['semuasekolah']}}" class="stretched-link"></a>
             </div>
             <div class="card-footer">
                 <h2 class="card-text text-center text-white">{{$countall['countsekolah']}}</h2>
@@ -20,7 +20,7 @@
             <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
             <div class="card-body py-2">
               <h5 class="text-center text-white">Total SMA</h5>
-              <a href="{{route('semuasma')}}" class="stretched-link"></a>
+              <a href="{{ $url['semuasma'] }}" class="stretched-link"></a>
             </div>
             <div class="card-footer">
                 <h2 class="card-text text-center text-white">{{$countall['countsma']}}</h2>
@@ -30,7 +30,7 @@
             <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
             <div class="card-body py-2">
               <h5 class="text-center text-white">Total SMP</h5>
-              <a href="{{route('semuasmp')}}" class="stretched-link"></a>
+              <a href="{{ $url['semuasmp'] }}" class="stretched-link"></a>
             </div>
             <div class="card-footer">
                 <h2 class="card-text text-center text-white">{{$countall['countsmp']}}</h2>
@@ -40,7 +40,7 @@
             <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
             <div class="card-body py-2">
               <h5 class="text-center text-white">Total SD</h5>
-              <a href="{{route('semuasd')}}" class="stretched-link"></a>
+              <a href="{{ $url['semuasd'] }}" class="stretched-link"></a>
             </div>
             <div class="card-footer">
                 <h2 class="card-text text-center text-white">{{$countall['countsd']}}</h2>
@@ -50,7 +50,7 @@
             <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
             <div class="card-body py-2">
               <h5 class="text-center text-white">Total TK</h5>
-              <a href="{{route('semuatk')}}" class="stretched-link"></a>
+              <a href="{{$url['semuatk']}}" class="stretched-link"></a>
             </div>
             <div class="card-footer">
                 <h2 class="card-text text-center text-white">{{$countall['counttk']}}</h2>
@@ -60,7 +60,7 @@
             <img class="card-img-top pt-2 px-5" src="{{asset('kemdikbud.png')}}" alt="kemdikbud">
             <div class="card-body py-2">
               <h5 class="text-center text-white">Total PAUD</h5>
-              <a href="{{route('semuapaud')}}" class="stretched-link"></a>
+              <a href="{{$url['semuapaud']}}" class="stretched-link"></a>
             </div>
             <div class="card-footer">
                 <h2 class="card-text text-center text-white">{{$countall['countpaud']}}</h2>

@@ -96,6 +96,29 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/panel/editberita/{id}', [PanelController::class, 'editberita'])->name('panel/editberita');
 
+    Route::get('/panel/semuasekolah', [PanelController::class, 'semuasekolah'])->name('panel/semuasekolah');
+
+    Route::get('/panel/semuasma', [PanelController::class, 'semuasma'])->name('panel/semuasma');
+
+    Route::get('/panel/semuasmp', [PanelController::class, 'semuasmp'])->name('panel/semuasmp');
+
+    Route::get('/panel/semuasd', [PanelController::class, 'semuasd'])->name('panel/semuasd');
+
+    Route::get('/panel/semuatk', [PanelController::class, 'semuatk'])->name('panel/semuatk');
+
+    Route::get('/panel/semuapaud', [PanelController::class, 'semuapaud'])->name('panel/semuapaud');
+
+    Route::get('/panel/pgetsemuasekolah', [PanelController::class, 'pgetsemuasekolah'])->name('pgetsemuasekolah');
+
+    Route::get('/panel/pgetsemuasma', [PanelController::class, 'pgetsemuasma'])->name('panel/pgetsemuasma');
+
+    Route::get('/panel/pgetsemuasmp', [PanelController::class, 'pgetsemuasmp'])->name('panel/pgetsemuasmp');
+
+    Route::get('/panel/pgetsemuasd', [PanelController::class, 'pgetsemuasd'])->name('panel/pgetsemuasd');
+
+    Route::get('/panel/pgetsemuatk', [PanelController::class, 'pgetsemuatk'])->name('panel/pgetsemuatk');
+
+    Route::get('/panel/pgetsemuapaud', [PanelController::class, 'pgetsemuapaud'])->name('panel/pgetsemuapaud');
 
     /*------------------------------------------------------------------------*/
 

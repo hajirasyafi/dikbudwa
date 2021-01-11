@@ -9,6 +9,7 @@ use App\Models\Kota;
 use App\Models\Provinsi;
 use App\Models\Sekolah;
 use App\Models\BeritaModel;
+use DataTables;
 
 class PanelController extends Controller
 {
@@ -22,7 +23,16 @@ class PanelController extends Controller
             'counttk' => Sekolah::where('jenjang', 'TK')->count(),
             'countpaud' => Sekolah::where('jenjang', 'PAUD')->count()
         ];
-        return view('panel.panel', ['countall'=>$countall]);
+        $url = [
+            'semuasekolah' => route('panel/semuasekolah'),
+            'semuasma' => route('panel/semuasma'),
+            'semuasmp' => route('panel/semuasmp'),
+            'semuasd' => route('panel/semuasd'),
+            'semuatk' => route('panel/semuatk'),
+            'semuapaud' => route('panel/semuapaud'),
+        ];
+        return view('panel.panel', ['countall'=>$countall])
+        ->with(['url'=>$url]);
     }
 
     public function daftarberita()
@@ -51,7 +61,16 @@ class PanelController extends Controller
             'counttk' => Sekolah::where('jenjang', 'TK')->count(),
             'countpaud' => Sekolah::where('jenjang', 'PAUD')->count()
         ];
-        return view('panel.sekolah', ['countall'=>$countall]);
+        $url = [
+            'semuasekolah' => route('panel/semuasekolah'),
+            'semuasma' => route('panel/semuasma'),
+            'semuasmp' => route('panel/semuasmp'),
+            'semuasd' => route('panel/semuasd'),
+            'semuatk' => route('panel/semuatk'),
+            'semuapaud' => route('panel/semuapaud'),
+        ];
+        return view('panel.sekolah', ['countall'=>$countall])
+        ->with(['url'=>$url]);
     }
 
     public function spkota($id)
@@ -110,5 +129,55 @@ class PanelController extends Controller
     {
         $berita = BeritaModel::where('id', $id)->first();
         return view('panel.editberita', ['berita'=>$berita]);
+    }
+
+    public function semuasekolah()
+    {
+        return view('panel.semuasekolah');
+    }
+
+    public function pgetsemuasekolah()
+    {
+        $getsekolah = Sekolah::with('getDesa')
+                    ->with('getKecamatan')
+                    ->with('getKota')
+                    ->with('getProvinsi')
+                    ->get();
+        $getsekolah = $getsekolah->map(function($getsekolah){
+                    $getsekolah['provinsi'] = $getsekolah->getProvinsi->name;
+                    $getsekolah['kota'] = $getsekolah->getKota->name;
+                    $getsekolah['kecamatan'] = $getsekolah->getKecamatan->name;
+                    $getsekolah['desa'] = $getsekolah->getDesa->name;
+                    $getsekolah['link'] = route('panel/sp', $getsekolah->npsn);
+                    return $getsekolah;
+        });
+        return DataTables::of($getsekolah)
+                ->addIndexColumn()
+                ->toJson();
+    }
+
+    public function semuasma()
+    {
+        return view('panel.semuasma');
+    }
+
+    public function semuasmp()
+    {
+        return view('panel.semuasmp');
+    }
+
+    public function semuasd()
+    {
+        return view('panel.semuasd');
+    }
+
+    public function semuatk()
+    {
+        return view('panel.semuatk');
+    }
+
+    public function semuapaud()
+    {
+        return view('panel.semuapaud');
     }
 }
